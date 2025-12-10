@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsun Yardımlaşma Platformu</title>
+    <style>
+        :root {
+            --primary-color: #007bff; /* Mavi */
+            --secondary-color: #28a745; /* Yeşil */
+            --danger-color: #dc3545; /* Kırmızı (Uyarılar için) */
+            --bg-color: #f8f9fa; /* Açık Gri Arkaplan */
+            --text-color: #333;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Okunaklı Türkçe font */
+        }
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        header {
+            background: #fff;
+            color: var(--text-color);
+            padding-top: 10px;
+            min-height: 70px;
+            border-bottom: var(--primary-color) 3px solid;
+            text-align: center;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .logo-container img {
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+        .logo-container h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        nav ul {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            padding: 0 15px 10px 15px;
+        }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        .hero {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .hero h2 {
+            color: #fff;
+            margin-top: 0;
+        }
+        .btn-action {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-action:hover {
+            background: #1e7e34;
+        }
+        section {
+            padding: 20px 0;
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        /* Proje Kartları Stil Düzenlemesi */
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .project-card h3 {
+            color: var(--danger-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .project-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .alert-box {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        /* Gönüllü Formu Stili */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Padding'in genişliğe dahil olmasını sağlar */
+        }
+        .btn-submit {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #0056b3;
+        }
+
+        /* Yeni Kripto Cüzdan Stili */
+        .crypto-wallet {
+            background-color: #ffc107; /* Sarı - Dikkat çekici */
+            color: #343a40;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            word-wrap: break-word; /* Uzun adresi sığdırmak için */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .crypto-wallet p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .crypto-wallet .address {
+            font-size: 16px;
+            color: #000;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
+        }
+        /* Mobil Uyumlu Navigasyon */
+        @media (max-width: 600px) {
+            .logo-container {
+                flex-direction: column;
+            }
+            .logo-container img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                padding: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="resimler/LOGO - Kopya.jpg" alt="Samsun Yardımlaşma Platformu Logo">
+                <h1>Samsun Yardımlaşma Platformu</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#projelerimiz">Projelerimiz</a></li>
+                    <li><a href="#acil-ihtiyaclar">Yardım İste</a></li>
+                    <li><a href="#yardim-et">Yardım Et</a></li>
+                    <li><a href="#gonullu-ol">Gönüllü Ol</a></li> 
+                    <li><a href="#iletisim">İletişim</a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/samsun_yardimlasma/">Instagram</a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/samsunyardimlasma">Facebook</a></li>
+                    <li><a target="_blank" href="https://t.me/samsunyardimlasma">Telegram</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h2>Samsun'da İyilik Köprüsü Kuruyoruz</h2>
+            <p>Hiçbir kuruma bağlı olmayan, tamamen gönüllü esaslı yardım ağımıza hoş geldiniz. İhtiyaç sahipleri ve yardımseverler bu platformda buluşuyor.</p>
+            <a href="#yardim-et" class="btn-action">Hemen Yardım Et</a>
+            <a href="MAILTO:EPOSTA_ADRESINIZ@domain.com?subject=Yardım%20Talebi" class="btn-action" style="background: var(--danger-color);">Yardım İste</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <section id="suyukuyusu-konum">
+            <div class="container" style="text-align: center;">
+                <h2 style="color: var(--secondary-color);">📍 Bangladeş Su Kuyusu Konumu</h2>
+                <p>Samsun Yardımlaşma Platformu'nun desteklediği kalıcı eseri haritada görüntüleyebilirsiniz.</p>
+                <div style="border: 3px solid var(--primary-color); border-radius: 8px; overflow: hidden; margin: 20px 0;">
+                    <iframe
+                        src="https://maps.google.com/?cid=2791376472752406789&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl"
+                        width="100%"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <p>FX44+J3R, Cox's Bazar, Bangladeş</p>
+                <a href="#projelerimiz" class="btn-action">Proje Detaylarına Git</a>
+            </div>
+        </section>
+
+        <section id="hakkimizda">
+            <h2>Hakkımızda</h2>
+            <p style="padding: 0 20px;">Bizler, Samsun'da yaşayan ve çevresindeki ihtiyaç sahiplerine ulaşmayı hedefleyen bir grup gönüllüyüz. Resmi bir kurum veya dernek değiliz; amacımız sadece güvenilir ve hızlı bir şekilde destek sağlamaktır. Şeffaflık ilkemiz gereği, toplanan ve ulaştırılan tüm yardımların takibini yapıyoruz. Samsun'a gönül vermiş herkesi bu iyilik hareketine bekliyoruz.</p>
+        </section>
+
+        <section id="projelerimiz">
+            <h2>Tamamlanan ve Devam Eden Projelerimiz</h2>
+            
+            <div class="project-card">
+                <h3>Bangladeş Su Kuyusu Projesi (Tamamlandı - Kalıcı Eser)</h3>
+                <img src="resimler/004.JPG" alt="Bangladeş Su Kuyusu Açılışı">
+                <p><strong>Proje Açıklaması:</strong> Susuzlukla mücadele eden kardeşlerimize kalıcı bir çözüm sunmak amacıyla Bangladeş'te su kuyusu açtık. Bu kuyu, onlarca ailenin temiz suya ulaşımını sağlamaktadır. Katkıda bulunan tüm yardımseverlerimize minnettarız.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/003.JPG" alt="Su Kuyusu ve Çocuklar" style="width: 45%; height: auto; margin-top: 10px;">
+                    <img src="resimler/001.JPG" alt="Su Kuyusu Projesi Görseli" style="width: 45%; height: auto; margin-top: 10px;">
+                </div>
+                <div class="alert-box" style="background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;">
+                    💧 **KONUM BİLGİSİ:** **SAMSUN YARDIMLAŞMA PLATFORMU SU KUYUSU**, Cox's Bazar, Bangladeş. <a href="https://maps.google.com/?cid=2791376472752406789&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank">Haritada Gör.</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Acil Gazze ve Bölgesel İnsani Yardım Projesi (Aktif)</h3>
+                <img src="resimler/312473235_676480153705233_1095675958757588008_n.jpg" alt="Gazze ve Bölgesel Yardımlar Öğrenci Sınıf Fotoğrafı">
+                <p><strong>Proje Açıklaması:</strong> Acil insani yardıma ihtiyaç duyan, özellikle savaş ve çatışma bölgelerindeki (Gazze, Suriye vb.) kardeşlerimize eğitim, gıda ve temel yaşam malzemeleri ulaştırmak için çalışıyoruz. Kardeşlik bağlarımızla yanınızdayız.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/312454442_208495294939437_7610603580549516173_n.jpg" alt="Türk Bayraklı Çocuklar" style="width: 45%; height: auto; margin-top: 10px;">
+                    <img src="resimler/312355498_147451217993996_6425064632769921638_n.jpg" alt="Yardım Dağıtımı Çocuklar" style="width: 45%; height: auto; margin-top: 10px;">
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Gıda Kolisi ve Gıda Kartı Yardımı Projesi (Aktif)</h3>
+                <img src="resimler/GIDA YARDIM (2).jpg" alt="Aileye Gıda Kolisi Teslimi">
+                <p><strong>Proje Açıklaması:</strong> İhtiyaç sahibi ailelerin mutfak masraflarını hafifletmek amacıyla temel gıda ürünlerinden oluşan koliler veya market hediye kartları ulaştırıyoruz. Aç kalan kimse kalmasın diye çalışıyoruz.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/299785818_783185502720752_7435890346440752061_n.jpg" alt="Samsun Yenidoğan Gıda Yardımı" style="width: 45%; height: auto; margin-top: 10px;">
+                    <img src="resimler/299394160_527782195815611_8296147279185127773_n.jpg" alt="Gıda ve Kıyafet Yardımı Teşekkür Mesajı" style="width: 45%; height: auto; margin-top: 10px;">
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Kışlık ve Mevsimlik Giyim Yardımı Projesi (Aktif)</h3>
+                <img src="resimler/GİYİM YARDIM.jpg" alt="Giyim Yardımı Dağıtımı">
+                <p><strong>Proje Açıklaması:</strong> Özellikle kış aylarında olmak üzere, ihtiyaç sahibi çocuk, genç ve yaşlılar için temiz ve kullanılabilir giysi, ayakkabı ve mont yardımları yapıyoruz. Evinize sığmayan fazlalıklar, bir başkasının hayatını ısıtabilir.</p>
+            </div>
+            
+            <div class="project-card">
+                <h3>Market Hediye Kartı ve Fatura Desteği Projesi (Aktif)</h3>
+                <img src="resimler/marketkart1.jpg" alt="Market Hediye Kartı veya Gıda Yardımı İhtiyacımız Var!">
+                <p><strong>Proje Açıklaması:</strong> İhtiyaç sahibi ailelerin temel gıda masraflarını karşılayabilmeleri için anlaşmalı marketlerden (A101, Şok, BİM vb.) hediye kartları temin edilmektedir. Ayrıca **#askıdafatura** kampanyası ile fatura desteği de sağlanmaktadır.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; align-items: flex-end;">
+                    <div style="width: 30%; min-width: 150px; margin: 10px;">
+                         <img src="resimler/BİM.jpg" alt="Dağıtılan BİM Hediye Kartları" style="max-height: 150px; object-fit: contain;">
+                        <p style="font-size: 14px; margin: 5px 0;">BİM Kartları.</p>
+                    </div>
+                    <div style="width: 30%; min-width: 150px; margin: 10px;">
+                        <img src="resimler/284618067_1047612412855179_1131216478815862935_n.jpg" alt="Fatura ve Market Yardımı" style="max-height: 150px; object-fit: contain;">
+                        <p style="font-size: 14px; margin: 5px 0;">Fatura Desteği.</p>
+                    </div>
+                    <div style="width: 30%; min-width: 150px; margin: 10px;">
+                         <img src="resimler/ŞOK.jpg" alt="BİM ŞOK A101 Hediye Kartları" style="max-height: 150px; object-fit: contain;">
+                        <p style="font-size: 14px; margin: 5px 0;">Genel Kart Çağrısı.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Medikal Yardım ve Sağlık Desteği Projesi (Devam Ediyor)</h3>
+                <img src="resimler/MEDİKAL YARDIM.jpg" alt="Medikal Yardım Desteği">
+                <p><strong>Proje Açıklaması:</strong> Yaşlı, engelli veya kronik hastalığı bulunan ihtiyaç sahiplerine tekerlekli sandalye, yürüteç, hasta bezi, medikal malzeme ve ilaç desteği sağlamaktayız. Sağlık, en büyük ihtiyaçtır!</p>
+            </div>
+            
+            <div class="project-card">
+                <h3>Kırtasiye ve Eğitim Desteği Projesi (Aktif)</h3>
+                <img src="resimler/KIRTASİYE YARDIM.jpg" alt="Kırtasiye Yardımı Dağıtımı">
+                <p><strong>Proje Açıklaması:</strong> Geleceğimizin teminatı olan çocuklarımızın eğitim hayatlarına katkı sağlamak amacıyla defter, kalem, çanta ve diğer tüm kırtasiye ihtiyaçlarını karşılıyoruz. Okul masrafları konusunda desteklerinizi bekliyoruz.</p>
+            </div>
+            
+             <div class="project-card">
+                <h3>Çocuklara Gofret, Atıştırmalık ve Oyuncak Dağıtımı (Gönüllü Desteği)</h3>
+                <img src="resimler/320437306_813691553157469_7402436696656079460_n.jpg" alt="Gofret Alan Mutlu Çocuklar">
+                <p><strong>Proje Açıklaması:</strong> Yetim ve yardıma muhtaç çocukları sevindirmek amacıyla, temel yardımların yanı sıra gofret, atıştırmalık ve oyuncak (araba vb.) dağıtımı yaparak yüzlerindeki tebessümü artırmayı hedefliyoruz.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/312536632_5913876945313225_606781976811374570_n.jpg" alt="Oyuncak Araba Alan Çocuklar" style="width: 45%; height: auto; margin-top: 10px;">
+                    <img src="resimler/312156341_520948809504164_4549628135450024654_n.jpg" alt="Baloncuk Oynayan Çocuklar" style="width: 45%; height: auto; margin-top: 10px;">
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Kur'an-ı Kerim Dağıtımı Projesi (Tamamlandı)</h3>
+                <img src="resimler/3.jpg" alt="Kur'an-ı Kerim Dağıtımı - Toplu Görünüm">
+                <p><strong>Proje Açıklaması:</strong> Yurt dışındaki medreselerde eğitim gören öğrencilerin manevi ihtiyaçlarını karşılamak üzere, bağışlarınızla temin edilen Kur'an-ı Kerimler dağıtılmıştır. Eğitimlerine destek olmaktan mutluluk duyduk.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/320075868_1454721894937168_1486529853841410276_n.jpg" alt="Kuran Alan Çocuk" style="width: 30%; height: auto; margin-top: 10px;">
+                    <img src="resimler/320440349_1360145114811752_3398832663388203003_n.jpg" alt="Kuran Alan Çocuk 2" style="width: 30%; height: auto; margin-top: 10px;">
+                    <img src="resimler/5.jpg" alt="Kuran Alan Genç Kız" style="width: 30%; height: auto; margin-top: 10px;">
+                </div>
+            </div>
+            
+             <div class="project-card">
+                <h3 style="color: var(--secondary-color);">💎 Özel Bağış Sertifikası ve Onurlandırma</h3>
+                <img src="resimler/Sertifika 11x8.5  inç.jpeg" alt="Eda YAVUZ DİKİCİ Teşekkür Sertifikası">
+                <p><strong>Açıklama:</strong> Platformumuza maddi ve manevi destek sağlayan tüm yardımseverlerimiz adına özel olarak teşekkür sertifikaları hazırlıyoruz. Bu sertifikalar, bağışlarınızın şeffaf ve doğru amaçlara ulaştığının bir göstergesidir.</p>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                    <img src="resimler/İHTİYAÇ SAHİBİ.jpg" alt="Buğra Alaçam Bağış Sertifikası" style="width: 45%; height: auto; margin-top: 10px;">
+                    <img src="resimler/DOUM GUNU.jpg" alt="Ceren Dursun Doğum Günü Bağışı" style="width: 45%; height: auto; margin-top: 10px;">
+                </div>
+                <div class="alert-box" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+                   🎁 **HEDİYE SERTİFİKASI:** Doğum günü, Öğretmenler Günü gibi özel günler için sevdikleriniz adına bağış yaparak onlara özel bir sertifika hediye edebilirsiniz.
+                </div>
+            </div>
+
+        </section>
+
+        <section id="gonullu-ol">
+            <h2>Gönüllü Ekibimize Katılın</h2>
+            <p style="text-align: center; padding: 0 20px;">Samsun Yardımlaşma Platformu, tamamen gönüllülerin gücüyle ilerlemektedir. Saha çalışmalarına katılmak, sosyal medya desteği vermek veya bir alanda uzmanlığınızla katkı sağlamak istiyorsanız formu doldurun. </p>
+
+            <form action="gonder.php" method="POST" class="project-card" style="max-width: 500px; text-align: left;">
+                <h3 style="color: var(--primary-color);">Gönüllü Üye Başvuru Formu</h3>
+                <div class="form-group">
+                    <label for="adsoyad">Adınız Soyadınız *</label>
+                    <input type="text" id="adsoyad" name="adsoyad" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Posta Adresiniz *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telefon Numaranız</label>
+                    <input type="text" id="telefon" name="telefon">
+                </div>
+                <div class="form-group">
+                    <label for="ilce">Yaşadığınız İlçe *</label>
+                    <select id="ilce" name="ilce" required>
+                        <option value="">Lütfen Seçiniz</option>
+                        <option value="atakum">Atakum</option>
+                        <option value="canik">Canik</option>
+                        <option value="ilkadim">İlkadım</option>
+                        <option value="tekkeoy">Tekkeköy</option>
+                        <option value="diger">Diğer Samsun İlçeleri/Diğer İller</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="katki">Hangi Alanlarda Katkı Sağlamak İstersiniz?</label>
+                    <textarea id="katki" name="katki" rows="4" placeholder="Örn: Gıda kolisi dağıtımı, sosyal medya yönetimi, araç desteği vb."></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-size: 14px; color: var(--danger-color);">**NOT: Bu form şu anda aktif değildir. Başvurunuzu bize <a href="#iletisim">E-Posta</a> veya sosyal medya üzerinden iletiniz.**</p>
+                    <button type="submit" class="btn-submit">Gönüllü Ol Başvurusu Yap</button>
+                </div>
+            </form>
+        </section>
+        
+        <section id="yardim-et">
+            <h2>Destek Olmak İster Misiniz?</h2>
+            <p style="text-align: center;">Yardım türünüze göre aşağıdaki seçeneklerden birini kullanabilirsiniz. Maddi desteklerinizle iyilik köprüsünü kuruyoruz.</p>
+            
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; padding: 0 20px;">
+                
+                <div style="width: 45%; min-width: 250px; margin: 10px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                    <h3>💰 Maddi Destek ve Hesap Bilgileri</h3>
+                    <p style="font-weight: bold; color: var(--danger-color);">🔴 BANKA HESAP BİLGİLERİMİZ GÜNCELLENMİŞTİR!</p>
+                    <p>Yardımlarınızı aşağıdaki hesaba, açıklama kısmına amacınızı belirterek (örn: GIDA, SU KUYUSU, ZEKAT) gönderebilirsiniz:</p>
+                    
+                    <div style="background-color: #f1f1f1; padding: 10px; border-radius: 5px; margin-top: 10px; text-align: left;">
+                        <p><strong>Banka:</strong> Ziraat Katılım Bankası</p>
+                        <p><strong>Alıcı Adı:</strong> İYİLİK PLATFORMU DERNEĞİ (Örn.)</p>
+                        <p><strong>IBAN (TL):</strong> TR00 0001 0001 0000 0000 0000 00</p>
+                        <p style="font-size: 14px; font-style: italic;">**Lütfen havale/EFT yapmadan önce güncel ve resmi bilgileri teyit ediniz.**</p>
+                    </div>
+
+                    <div class="crypto-wallet">
+                        <p>₿ **KRİPTO PARA İLE BAĞIŞ (Bitcoin)**</p>
+                        <p>Aşağıdaki adresi kullanarak Bitcoin (BTC) bağışlarınızı yapabilirsiniz:</p>
+                        <p class="address"><strong>31qoBtBfXtkJrzzjYyYCNuvd6fftXhTtTe</strong></p>
+                    </div>
+                </div>
+                
+                <div style="width: 45%; min-width: 250px; margin: 10px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                    <h3>👕 Ayni Yardım & Gönüllülük</h3>
+                    <p>Giysi, gıda, eşya bağışı veya zamanınızla sahada/çevrimiçi gönüllü olmak için bize yazın.</p>
+                    <a href="#gonullu-ol" class="btn-action">Gönüllü Başvuru Formu</a>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="acil-ihtiyaclar">
+            <h2>İhtiyaçlar ve İletişim</h2> 
+            <p style="text-align: center; font-style: italic; padding: 0 20px;">**Lütfen buradaki bilgileri Instagram sayfanızdaki en güncel durum ile manuel olarak güncelleyin.**</p>
+            <div style="padding: 0 20px;">
+                
+                <img src="resimler/marketkart.jpg" alt="Acil Gıda ve Market Hediye Kartı İhtiyacı" style="max-width: 100%; border-radius: 5px; margin-bottom: 15px;">
+
+                <div class="alert-box">
+                     🔴 BANKA HESAP BİLGİLERİMİZ DEĞİŞMİŞTİR! YENİ BİLGİLERİ ALMADAN YARDIM YAPMAYINIZ! Lütfen iletişime geçiniz.
+                </div>
+                
+                <h4>🟠 Güncel İhtiyaç: Kırtasiye ve Okul Malzemeleri</h4>
+                <p><strong>Detay:</strong> Yeni eğitim-öğretim dönemine hazırlık amacıyla, ilkokul ve ortaokul öğrencileri için çanta, defter, boya ve diğer temel kırtasiye malzemelerine ihtiyaç bulunmaktadır. </p>
+
+                <h4>✅ Tamamlanan Çağrı</h4>
+                <p>Kışlık yakacak yardımı çağrısı, yardımseverlerimizin hızlı desteğiyle tamamlanmıştır. Destek olan herkese teşekkür ederiz. (Güncelleme Tarihi: 10.12.2025)</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 15px;">
+                <a target="_blank" href="https://www.instagram.com/samsun_yardimlasma/" style="color: var(--primary-color); font-weight: bold; text-decoration: none;">👉 Detaylı ve En Güncel İhtiyaçlar İçin Instagram Sayfamıza Gidin</a>
+            </div>
+        </section>
+
+        <section id="iletisim">
+            <h2>İletişim</h2>
+            <div style="text-align: center;">
+                <p><strong>Instagram (En Hızlı İletişim):</strong> <a target="_blank" href="https://www.instagram.com/samsun_yardimlasma/">@samsun_yardimlasma</a></p>
+                <p><strong>Facebook:</strong> <a target="_blank" href="https://www.facebook.com/samsunyardimlasma">Samsun Yardımlaşma</a></p>
+                <p><strong>Telegram:</strong> <a target="_blank" href="https://t.me/samsunyardimlasma">@samsunyardimlasma</a></p>
+                <p><strong>E-Posta:</strong> **EPOSTA\_ADRESINIZ@domain.com** (Lütfen burayı kendi e-posta adresinizle değiştirin)</p>
+                <p><strong>Telefon (Yalnızca Acil Durumlar İçin):</strong> **TELEFON NUMARANIZI BURAYA YAZIN**</p>
+                <p style="margin-top: 20px;">**Not:** Tüm taleplerinizi ve desteklerinizi, hızlı ve güvenilir geri dönüş için öncelikle sosyal medya veya E-Posta yoluyla iletmenizi rica ederiz.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2024 Samsun Yardımlaşma Platformu | Tamamen Gönüllü Girişim</p>
+    </footer>
+
+</body>
+</html>
